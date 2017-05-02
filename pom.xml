@@ -16,6 +16,8 @@
 		<mule.tools.version>1.2</mule.tools.version>
 		<derby.version>10.13.1.1</derby.version>
 		<activemq.version>5.14.5</activemq.version>
+		<uid>user</uid>
+		<pwd>password</pwd>
 	</properties>
 
 	<build>
@@ -50,6 +52,29 @@
 								</resource>
 							</resources>
 						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.mule.tools.maven</groupId>
+				<artifactId>mule-maven-plugin</artifactId>
+				<version>2.0</version>
+				<configuration>
+					<deploymentType>cloudhub</deploymentType>
+					<muleVersion>3.8.3</muleVersion>
+					<username>${uid}</username>
+					<password>${pwd}</password>
+					<workerType>Micro</workerType>
+					<redeploy>true</redeploy>
+					<environment>Production</environment>
+				</configuration>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
 					</execution>
 				</executions>
 			</plugin>
